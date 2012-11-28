@@ -3,9 +3,9 @@ package ca.mitmaro.RoboTim.robot.responder;
 import java.io.IOException;
 
 import ca.mitmaro.RoboTim.irc.command.Command;
-import ca.mitmaro.RoboTim.irc.command.InvalidCommandException;
-import ca.mitmaro.RoboTim.irc.command.Ping;
-import ca.mitmaro.RoboTim.irc.command.Pong;
+import ca.mitmaro.RoboTim.irc.command.commands.Ping;
+import ca.mitmaro.RoboTim.irc.command.commands.Pong;
+import ca.mitmaro.RoboTim.irc.command.exception.InvalidCommandException;
 import ca.mitmaro.RoboTim.robot.Robot;
 
 public class PingResponder extends AbstractResponder {

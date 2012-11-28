@@ -1,4 +1,5 @@
-package ca.mitmaro.RoboTim.irc.command;
+package ca.mitmaro.RoboTim.irc.command.commands;
+
 
 public class User extends AbstractCommand {
 
@@ -10,7 +11,6 @@ public class User extends AbstractCommand {
 		super("USER");
 		this.user = user;
 		this.mode = mode;
-		this.name = name;
 	}
 
 	@Override

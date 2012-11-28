@@ -3,8 +3,8 @@ package ca.mitmaro.RoboTim.robot.responder;
 import java.io.IOException;
 
 import ca.mitmaro.RoboTim.irc.command.Command;
-import ca.mitmaro.RoboTim.irc.command.Join;
-import ca.mitmaro.RoboTim.irc.command.numeric.Numeric004;
+import ca.mitmaro.RoboTim.irc.command.commands.Join;
+import ca.mitmaro.RoboTim.irc.command.commands.Numeric004;
 import ca.mitmaro.RoboTim.robot.Robot;
 
 public class JoinChannelResponder extends AbstractResponder {

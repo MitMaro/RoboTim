@@ -1,4 +1,5 @@
-package ca.mitmaro.RoboTim.irc.command;
+package ca.mitmaro.RoboTim.irc.command.commands;
+
 
 public class Quit extends AbstractCommand {
 	
@@ -13,9 +14,8 @@ public class Quit extends AbstractCommand {
 	@Override
 	public String getMessage() {
 		if (this.message == null) {
-			return String.format("QUIT");
+			return "QUIT";
 		}
-		
 		return String.format("QUIT :%s", this.message);
 	}
 

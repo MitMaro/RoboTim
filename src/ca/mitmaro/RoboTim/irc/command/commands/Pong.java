@@ -1,4 +1,6 @@
-package ca.mitmaro.RoboTim.irc.command;
+package ca.mitmaro.RoboTim.irc.command.commands;
+
+import ca.mitmaro.RoboTim.irc.command.exception.InvalidCommandException;
 
 public class Pong extends AbstractCommand {
 
@@ -19,7 +21,7 @@ public class Pong extends AbstractCommand {
 		super("PONG");
 		
 		if (server == null && server2 == null) {
-			throw new InvalidCommandException("Missing both server and server2 parameter in PONG command");
+			throw new InvalidCommandException("One of server or server2 parameter must be provided for the PONG command");
 		}
 		this.server = server;
 		this.server2 = server2;
@@ -30,20 +32,20 @@ public class Pong extends AbstractCommand {
 		
 		// server 1 and server 2
 		if (this.server != null && this.server2 != null) {
-			return String.format("%s %s %s", this.getName(), this.server, this.server2);
+			return String.format("%s %s %s", this.getCommandName(), this.server, this.server2);
 		}
 
 		// server 1 but not server 2
 		if (this.server != null && this.server2 == null) {
-			return String.format("%s %s", this.getName(), this.server);
+			return String.format("%s %s", this.getCommandName(), this.server);
 		}
 		
 		// server 2 but not server 1
 		if (this.server == null && this.server2 != null) {
-			return String.format("%s :%s", this.getName(), this.server2);
+			return String.format("%s :%s", this.getCommandName(), this.server2);
 		}
-		
-		return "";
+
+		throw new RuntimeException("This state should not happen. There is probably a bug in a constructor.");
 	}
 
 }

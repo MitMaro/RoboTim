@@ -8,10 +8,10 @@ import java.util.logging.Logger;
 
 import ca.mitmaro.RoboTim.irc.CommandMapper;
 import ca.mitmaro.RoboTim.irc.MessageReceiver;
-import ca.mitmaro.RoboTim.irc.command.Nick;
-import ca.mitmaro.RoboTim.irc.command.Privmsg;
-import ca.mitmaro.RoboTim.irc.command.Quit;
-import ca.mitmaro.RoboTim.irc.command.User;
+import ca.mitmaro.RoboTim.irc.command.commands.Nick;
+import ca.mitmaro.RoboTim.irc.command.commands.Privmsg;
+import ca.mitmaro.RoboTim.irc.command.commands.Quit;
+import ca.mitmaro.RoboTim.irc.command.commands.User;
 import ca.mitmaro.RoboTim.irc.mapper.Numeric004Mapper;
 import ca.mitmaro.RoboTim.irc.mapper.PingMapper;
 import ca.mitmaro.RoboTim.irc.mapper.PongMapper;

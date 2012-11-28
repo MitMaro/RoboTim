@@ -1,7 +1,8 @@
 package ca.mitmaro.RoboTim.network.exception;
 
-@SuppressWarnings("serial")
 public class InvalidLineException extends Exception {
+
+	private static final long serialVersionUID = -3833489424408829310L;
 
 	public InvalidLineException(String message) {
 		super(message);

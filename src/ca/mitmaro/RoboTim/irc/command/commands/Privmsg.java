@@ -1,4 +1,5 @@
-package ca.mitmaro.RoboTim.irc.command;
+package ca.mitmaro.RoboTim.irc.command.commands;
+
 
 public class Privmsg extends AbstractCommand {
 	

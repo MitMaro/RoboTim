@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ca.mitmaro.RoboTim.irc.command.CommandHandler;
-import ca.mitmaro.RoboTim.irc.command.InvalidCommandException;
+import ca.mitmaro.RoboTim.irc.command.exception.InvalidCommandException;
 import ca.mitmaro.RoboTim.network.Connection;
 import ca.mitmaro.RoboTim.robot.command.Command;
 import ca.mitmaro.RoboTim.robot.command.CommandException;
