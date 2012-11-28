@@ -16,13 +16,13 @@ import ca.mitmaro.RoboTim.irc.mapper.Numeric004Mapper;
 import ca.mitmaro.RoboTim.irc.mapper.PingMapper;
 import ca.mitmaro.RoboTim.irc.mapper.PongMapper;
 import ca.mitmaro.RoboTim.irc.message.AbstractMessageHandler;
-import ca.mitmaro.RoboTim.irc.message.InvalidMessageException;
 import ca.mitmaro.RoboTim.irc.message.Message;
+import ca.mitmaro.RoboTim.irc.message.exception.InvalidMessage;
 import ca.mitmaro.RoboTim.network.Connection;
 import ca.mitmaro.RoboTim.network.Receiver;
 import ca.mitmaro.RoboTim.robot.Robot;
 import ca.mitmaro.RoboTim.robot.command.AbstractCommand;
-import ca.mitmaro.RoboTim.robot.command.CommandException;
+import ca.mitmaro.RoboTim.robot.command.exception.InvalidCommand;
 import ca.mitmaro.RoboTim.robot.responder.JoinChannelResponder;
 import ca.mitmaro.RoboTim.robot.responder.PingResponder;
 
@@ -58,7 +58,7 @@ public class Runner implements Runnable {
 		message_receiver.addHandler(new AbstractMessageHandler() {
 			
 			@Override
-			public void handle(Message message) throws InvalidMessageException {
+			public void handle(Message message) throws InvalidMessage {
 				System.out.println(message.toString());
 				
 			}
@@ -69,7 +69,7 @@ public class Runner implements Runnable {
 		tim.registerStartupCommand(new AbstractCommand() {
 			
 			@Override
-			public void run(Robot robot) throws CommandException {
+			public void run(Robot robot) throws InvalidCommand {
 				Nick nick = new Nick("RoboTim");
 				User user = new User("robotim", 0, "Alter Tim");
 				

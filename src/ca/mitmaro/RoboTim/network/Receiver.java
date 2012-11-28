@@ -12,7 +12,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.logging.Logger;
 
-import ca.mitmaro.RoboTim.network.exception.InvalidLineException;
+import ca.mitmaro.RoboTim.network.exception.InvalidLine;
 
 
 /**
@@ -50,6 +50,7 @@ public class Receiver implements Runnable {
 	}
 	
 	public void addHandler(ReceiverHandler r) {
+		this.logger.finer(String.format("Adding reciever handler: %s", r.toString()));
 		this.handlers.add(r);
 	}
 	
@@ -61,10 +62,13 @@ public class Receiver implements Runnable {
 			try {
 				line = this.connection.waitForResponse();
 				
+				this.logger.finest(String.format("Read Line: %s", line));
+				
 				for(ReceiverHandler r: this.handlers) {
 					try {
 						r.handle(line);
-					} catch (InvalidLineException e) {
+					} catch (InvalidLine e) {
+						this.logger.severe(String.format("InvalidLine for handler: %s", r.getClass()));
 						// still not sure how to handle this....
 						e.printStackTrace();
 					}
@@ -73,16 +77,16 @@ public class Receiver implements Runnable {
 				Thread.sleep(20);
 			}
 			catch(InterruptedException e) {
-				this.logger.fine("Interupted");
+				this.logger.fine("Connection read was interupted");
 				return;
 			}
 			catch (SocketTimeoutException e) {
 				// this is ok, it's supposed to happen eventually
-				this.logger.finest("Timeout");
+				this.logger.finest("Socket timed out");
 				continue;
 			}
 			catch (IOException e) {
-				this.logger.warning("IOException Occured");
+				this.logger.warning(String.format("IOException Occured: %s", e.getMessage()));
 				this.last_excpetion = e;
 				return;
 			}

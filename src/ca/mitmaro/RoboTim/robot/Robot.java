@@ -8,8 +8,8 @@ import ca.mitmaro.RoboTim.irc.command.CommandHandler;
 import ca.mitmaro.RoboTim.irc.command.exception.InvalidCommandException;
 import ca.mitmaro.RoboTim.network.Connection;
 import ca.mitmaro.RoboTim.robot.command.Command;
-import ca.mitmaro.RoboTim.robot.command.CommandException;
-import ca.mitmaro.RoboTim.robot.responder.ResponderException;
+import ca.mitmaro.RoboTim.robot.command.exception.InvalidCommand;
+import ca.mitmaro.RoboTim.robot.responder.InvalidResponse;
 import ca.mitmaro.RoboTim.robot.responder.ResponderHandler;
 
 public class Robot implements CommandHandler {
@@ -28,7 +28,6 @@ public class Robot implements CommandHandler {
 	}
 	
 	public void sendMessage(String message) throws IOException {
-		System.out.println(message);
 		this.connection.sendMessage(message + "\r\n");
 	}
 	
@@ -54,7 +53,7 @@ public class Robot implements CommandHandler {
 		for (Command c: this.startup_commands) {
 			try {
 				c.run(this);
-			} catch (CommandException e) {
+			} catch (InvalidCommand e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
@@ -65,7 +64,7 @@ public class Robot implements CommandHandler {
 		for (Command c: this.shutdown_commands) {
 			try {
 				c.run(this);
-			} catch (CommandException e) {
+			} catch (InvalidCommand e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
@@ -77,7 +76,7 @@ public class Robot implements CommandHandler {
 		for (ResponderHandler h: this.responders) {
 			try {
 				h.handle(this, command);
-			} catch (ResponderException e) {
+			} catch (InvalidResponse e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}

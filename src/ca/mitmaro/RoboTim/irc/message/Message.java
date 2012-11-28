@@ -1,5 +1,7 @@
 package ca.mitmaro.RoboTim.irc.message;
 
+import ca.mitmaro.RoboTim.irc.message.exception.InvalidMessage;
+
 public class Message {
 	
 	private String prefix = null;
@@ -10,7 +12,7 @@ public class Message {
 		null, null, null, null, null
 	};
 	
-	public Message(String message) throws InvalidMessageException {
+	public Message(String message) throws InvalidMessage {
 		
 		int prefix_end = -1;
 		int trailing_start;
@@ -19,7 +21,7 @@ public class Message {
 		String trailing = null;
 		
 		if (message == null || message.length() < 1) {
-			throw new InvalidMessageException("<<empty message>>");
+			throw new InvalidMessage("<<empty message>>");
 		}
 		
 		// grab the prefix
@@ -45,7 +47,7 @@ public class Message {
 			// add command
 			this.command = tmp[0].toLowerCase();
 		} else {
-			throw new InvalidMessageException(message);
+			throw new InvalidMessage(message);
 		}
 		
 		

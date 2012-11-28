@@ -33,7 +33,7 @@ public class JoinChannelResponder extends AbstractResponder {
 	}
 	
 	@Override
-	public void handle(Robot robot, Command command) throws ResponderException {
+	public void handle(Robot robot, Command command) throws InvalidResponse {
 		
 		if (!(command instanceof Numeric004)) {
 			return;

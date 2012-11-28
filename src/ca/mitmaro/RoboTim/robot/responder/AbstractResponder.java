@@ -6,5 +6,5 @@ import ca.mitmaro.RoboTim.robot.Robot;
 public abstract class AbstractResponder implements ResponderHandler {
 
 	@Override
-	public abstract void handle(Robot robot, Command command) throws ResponderException;
+	public abstract void handle(Robot robot, Command command) throws InvalidResponse;
 }
