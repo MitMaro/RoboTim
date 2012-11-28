@@ -41,9 +41,9 @@ public class Runner implements Runnable {
 		Logger logger = Logger.getLogger("global");
 		logger.setLevel(Level.OFF);
 		
-		Connection c = new Connection("localhost", 6667, 60*1000, logger);
+		Connection c = new Connection("localhost", 6667, 60*1000);
 		
-		Receiver receiver = new Receiver(c, logger);
+		Receiver receiver = new Receiver(c);
 		MessageReceiver message_receiver = new MessageReceiver();
 		CommandMapper message_handler = new CommandMapper();
 		
@@ -66,8 +66,6 @@ public class Runner implements Runnable {
 		
 		receiver.addHandler(message_receiver);
 		
-		
-		
 		tim.registerStartupCommand(new AbstractCommand() {
 			
 			@Override
@@ -86,7 +84,7 @@ public class Runner implements Runnable {
 		});
 		
 		tim.registerResponder(new PingResponder());
-		tim.registerResponder(new JoinChannelResponder("#Test"));
+		tim.registerResponder(new JoinChannelResponder("#muncssociety"));
 		
 		Thread reader_thread = new Thread(receiver);
 		reader_thread.start();

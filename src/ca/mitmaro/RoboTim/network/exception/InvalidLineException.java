@@ -1,4 +1,4 @@
-package ca.mitmaro.RoboTim.network;
+package ca.mitmaro.RoboTim.network.exception;
 
 @SuppressWarnings("serial")
 public class InvalidLineException extends Exception {

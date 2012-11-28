@@ -12,6 +12,8 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.logging.Logger;
 
+import ca.mitmaro.RoboTim.network.exception.InvalidLineException;
+
 
 /**
  * A Chatter Server
@@ -26,13 +28,25 @@ public class Receiver implements Runnable {
 	
 	private List<ReceiverHandler> handlers;
 	
-	public Receiver (Connection connection, Logger logger) {
-		
-		this.logger = logger;
-		
+	private Exception last_excpetion = null;
+	
+	public Receiver (Connection connection) {
+		this.logger = Logger.getLogger(this.getClass().getName());
 		this.handlers = new LinkedList<ReceiverHandler>();
-		
 		this.connection = connection;
+		logger.setParent(this.connection.getLogger());
+	}
+	
+	public Logger getLogger() {
+		return this.logger;
+	}
+	
+	public boolean hasError() {
+		return this.last_excpetion != null;
+	}
+	
+	public Exception getLastError() {
+		return this.last_excpetion;
 	}
 	
 	public void addHandler(ReceiverHandler r) {
@@ -48,26 +62,29 @@ public class Receiver implements Runnable {
 				line = this.connection.waitForResponse();
 				
 				for(ReceiverHandler r: this.handlers) {
-					r.handle(line);
+					try {
+						r.handle(line);
+					} catch (InvalidLineException e) {
+						// still not sure how to handle this....
+						e.printStackTrace();
+					}
 				}
 				
 				Thread.sleep(20);
 			}
 			catch(InterruptedException e) {
-				this.logger.info("Interupted");
+				this.logger.fine("Interupted");
 				return;
 			}
 			catch (SocketTimeoutException e) {
-				this.logger.fine("Timeout");
-				// this is ok
+				// this is ok, it's supposed to happen eventually
+				this.logger.finest("Timeout");
 				continue;
 			}
 			catch (IOException e) {
-				this.logger.severe("IOException Occured");
-				e.printStackTrace();
+				this.logger.warning("IOException Occured");
+				this.last_excpetion = e;
 				return;
-			} catch (InvalidLineException e) {
-				
 			}
 		}
 

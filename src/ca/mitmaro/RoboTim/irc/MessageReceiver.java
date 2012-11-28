@@ -6,8 +6,8 @@ import java.util.List;
 import ca.mitmaro.RoboTim.irc.message.InvalidMessageException;
 import ca.mitmaro.RoboTim.irc.message.Message;
 import ca.mitmaro.RoboTim.irc.message.MessageHandler;
-import ca.mitmaro.RoboTim.network.InvalidLineException;
 import ca.mitmaro.RoboTim.network.ReceiverHandler;
+import ca.mitmaro.RoboTim.network.exception.InvalidLineException;
 
 public class MessageReceiver implements ReceiverHandler {
 	
