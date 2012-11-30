@@ -1,0 +1,58 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>ca.mitmaro.RoboTim</groupId>
+  <artifactId>RoboTim</artifactId>
+  <version>0.1-Beta</version>
+
+  <name>RoboTim</name>
+  <url>https://github.com/MitMaro/RoboTim</url>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+  
+  <build>
+  <finalName>RoboTim</finalName>
+  <plugins>
+    <plugin>
+      <artifactId>maven-assembly-plugin</artifactId>
+      <configuration>
+        <descriptors>
+          <descriptor>src/assemble/assemble.xml</descriptor>
+        </descriptors>
+        <archive>
+          <manifestFile>src/main/resources/META-INF/MANIFEST.MF</manifestFile>
+        </archive>
+      </configuration>
+    </plugin>
+  </plugins>
+</build>
+
+  
+  <dependencies>
+  	<dependency>
+  		<groupId>org.testng</groupId>
+  		<artifactId>testng</artifactId>
+  		<version>6.8</version>
+  		<scope>test</scope>
+  	</dependency>
+  	<dependency>
+  		<groupId>org.mockito</groupId>
+  		<artifactId>mockito-core</artifactId>
+  		<version>1.9.5</version>
+  		<scope>test</scope>
+  	</dependency>
+  	<dependency>
+  		<groupId>org.slf4j</groupId>
+  		<artifactId>slf4j-api</artifactId>
+  		<version>1.7.2</version>
+  	</dependency>
+  	<dependency>
+  		<groupId>org.slf4j</groupId>
+  		<artifactId>slf4j-jdk14</artifactId>
+  		<version>1.7.2</version>
+  	</dependency>
+  </dependencies>
+</project>
