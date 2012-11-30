@@ -32,11 +32,13 @@ public class CommandMapper implements MessageHandler {
 	
 	public void registerMapper(Mapper command) {
 		this.logger.finer(String.format("Adding mapper: %s", command.toString()));
+		command.getLogger().setParent(this.logger);
 		this.mappers.add(command);
 	}
 	
 	public void registerCommandHandler(CommandHandler handler) {
 		this.logger.finer(String.format("Adding command handler: %s", handler.toString()));
+		handler.getLogger().setParent(this.logger);
 		this.handlers.add(handler);
 	}
 	
@@ -53,7 +55,6 @@ public class CommandMapper implements MessageHandler {
 		return null;
 	}
 
-	@Override
 	public void handle(Message message) throws InvalidMessage {
 		try {
 			Command c = this.mapMessageToCommand(message);

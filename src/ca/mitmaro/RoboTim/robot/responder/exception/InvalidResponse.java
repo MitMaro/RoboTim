@@ -1,4 +1,4 @@
-package ca.mitmaro.RoboTim.robot.responder;
+package ca.mitmaro.RoboTim.robot.responder.exception;
 
 public class InvalidResponse extends Exception {
 	

@@ -15,9 +15,6 @@ import ca.mitmaro.RoboTim.irc.command.commands.User;
 import ca.mitmaro.RoboTim.irc.mapper.Numeric004Mapper;
 import ca.mitmaro.RoboTim.irc.mapper.PingMapper;
 import ca.mitmaro.RoboTim.irc.mapper.PongMapper;
-import ca.mitmaro.RoboTim.irc.message.AbstractMessageHandler;
-import ca.mitmaro.RoboTim.irc.message.Message;
-import ca.mitmaro.RoboTim.irc.message.exception.InvalidMessage;
 import ca.mitmaro.RoboTim.network.Connection;
 import ca.mitmaro.RoboTim.network.Receiver;
 import ca.mitmaro.RoboTim.robot.Robot;
@@ -39,9 +36,9 @@ public class Runner implements Runnable {
 		
 		
 		Logger logger = Logger.getLogger("global");
-		logger.setLevel(Level.OFF);
 		
 		Connection c = new Connection("localhost", 6667, 60*1000);
+		c.getLogger().setParent(logger);
 		
 		Receiver receiver = new Receiver(c);
 		MessageReceiver message_receiver = new MessageReceiver();
@@ -55,18 +52,11 @@ public class Runner implements Runnable {
 		message_handler.registerCommandHandler(tim);
 		
 		message_receiver.addHandler(message_handler);
-		message_receiver.addHandler(new AbstractMessageHandler() {
-			
-			@Override
-			public void handle(Message message) throws InvalidMessage {
-				System.out.println(message.toString());
-				
-			}
-		});
-		
 		receiver.addHandler(message_receiver);
 		
 		tim.registerStartupCommand(new AbstractCommand() {
+			
+			private Logger logger = Logger.getLogger("StartupLogger");
 			
 			@Override
 			public void run(Robot robot) throws InvalidCommand {
@@ -81,11 +71,18 @@ public class Runner implements Runnable {
 					e.printStackTrace();
 				}
 			}
+
+			@Override
+			public Logger getLogger() {
+				return this.logger;
+			}
 		});
 		
 		tim.registerResponder(new PingResponder());
 		tim.registerResponder(new JoinChannelResponder("#muncssociety"));
-		
+
+		logger.setLevel(Level.ALL);
+
 		Thread reader_thread = new Thread(receiver);
 		reader_thread.start();
 		tim.startup();
@@ -110,7 +107,6 @@ public class Runner implements Runnable {
 		
 	}
 
-	@Override
 	public void run() {
 		
 		String line;

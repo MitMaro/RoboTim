@@ -34,7 +34,6 @@ public class Receiver implements Runnable {
 		this.logger = Logger.getLogger(this.getClass().getName());
 		this.handlers = new LinkedList<ReceiverHandler>();
 		this.connection = connection;
-		logger.setParent(this.connection.getLogger());
 	}
 	
 	public Logger getLogger() {
@@ -49,9 +48,10 @@ public class Receiver implements Runnable {
 		return this.last_excpetion;
 	}
 	
-	public void addHandler(ReceiverHandler r) {
-		this.logger.finer(String.format("Adding reciever handler: %s", r.toString()));
-		this.handlers.add(r);
+	public void addHandler(ReceiverHandler handler) {
+		this.logger.finer(String.format("Adding reciever handler: %s", handler.toString()));
+		handler.getLogger().setParent(this.logger);
+		this.handlers.add(handler);
 	}
 	
 	public void run() {

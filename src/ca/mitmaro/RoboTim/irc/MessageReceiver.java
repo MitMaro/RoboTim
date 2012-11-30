@@ -21,12 +21,16 @@ public class MessageReceiver implements ReceiverHandler {
 		this.logger = Logger.getLogger(this.getClass().getName());
 	}
 	
+	public Logger getLogger() {
+		return this.logger;
+	}
+	
 	public void addHandler(MessageHandler handler) {
 		this.logger.finest(String.format("Adding message handler: %s", handler.toString()));
+		handler.getLogger().setParent(this.logger);
 		this.handlers.add(handler);
 	}
 
-	@Override
 	public void handle(String line) throws InvalidLine {
 		Message m;
 		try {
