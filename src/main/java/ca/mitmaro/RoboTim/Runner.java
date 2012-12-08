@@ -4,8 +4,9 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-import ca.mitmaro.RoboTim.irc.CommandMapper;
-import ca.mitmaro.RoboTim.irc.MessageReceiver;
+import ca.mitmaro.RoboTim.irc.LineInputReceiver;
+import ca.mitmaro.RoboTim.irc.MessageReciever;
+import ca.mitmaro.RoboTim.irc.command.CommandMapper;
 import ca.mitmaro.RoboTim.irc.command.commands.Nick;
 import ca.mitmaro.RoboTim.irc.command.commands.Privmsg;
 import ca.mitmaro.RoboTim.irc.command.commands.Quit;
@@ -35,18 +36,19 @@ public class Runner implements Runnable {
 		Connection c = new Connection("localhost", 6667, 60*1000);
 		
 		Receiver receiver = new Receiver(c);
-		MessageReceiver message_receiver = new MessageReceiver();
-		CommandMapper message_handler = new CommandMapper();
+		LineInputReceiver line_receiver = new LineInputReceiver();
+		CommandMapper command_mapper = new CommandMapper();
 		
 		Robot tim = new Robot(c);
 		
-		message_handler.registerMapper(new PingMapper());
-		message_handler.registerMapper(new PongMapper());
-		message_handler.registerMapper(new Numeric004Mapper());
-		message_handler.registerCommandHandler(tim);
+		command_mapper.registerMapper(new PingMapper());
+		command_mapper.registerMapper(new PongMapper());
+		command_mapper.registerMapper(new Numeric004Mapper());
 		
-		message_receiver.addHandler(message_handler);
-		receiver.addHandler(message_receiver);
+		MessageReciever message_reciever = new MessageReciever(command_mapper);
+		
+		line_receiver.addHandler(message_reciever);
+		receiver.addHandler(line_receiver);
 		
 		tim.registerStartupCommand(new AbstractCommand() {
 			

@@ -27,6 +27,14 @@ public class Pong extends AbstractCommand {
 		this.server2 = server2;
 	}
 	
+	public String getServer() {
+		return this.server;
+	}
+	
+	public String getServer2() {
+		return this.server2;
+	}
+	
 	@Override
 	public String getMessage() {
 		

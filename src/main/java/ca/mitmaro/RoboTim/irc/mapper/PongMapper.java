@@ -10,7 +10,7 @@ public class PongMapper extends AbstractMapper {
 	@Override
 	public Command mapMessage(Message message) throws InvalidCommandException {
 		
-		if (!message.getCommand().equals("PONG")) {
+		if (!message.getCommand().equals("pong")) {
 			return null;
 		}
 		

@@ -1,0 +1,16 @@
+name: AllTests
+tests:
+  - name: Network
+    classes:
+      - ca.mitmaro.RoboTim.network.ConnectionTest
+      - ca.mitmaro.RoboTim.network.ReceiverTest
+
+  - name: IRC
+    classes:
+      - ca.mitmaro.RoboTim.irc.MessageReceiverTest
+      - ca.mitmaro.RoboTim.irc.mapper.Numeric004MapperTest
+      - ca.mitmaro.RoboTim.irc.mapper.PingMapperTest
+      - ca.mitmaro.RoboTim.irc.mapper.PongMapperTest
+      - ca.mitmaro.RoboTim.irc.message.MessageTest
+      - ca.mitmaro.RoboTim.irc.command.CommandMapperTest
+

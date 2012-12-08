@@ -12,13 +12,13 @@ import ca.mitmaro.RoboTim.irc.message.exception.InvalidMessage;
 import ca.mitmaro.RoboTim.network.ReceiverHandler;
 import ca.mitmaro.RoboTim.network.exception.InvalidLine;
 
-public class MessageReceiver implements ReceiverHandler {
+public class LineInputReceiver implements ReceiverHandler {
 	
 	private List<MessageHandler> handlers;
 	
-	private Logger logger = LoggerFactory.getLogger(MessageReceiver.class);
+	private Logger logger = LoggerFactory.getLogger(LineInputReceiver.class);
 	
-	public MessageReceiver() {
+	public LineInputReceiver() {
 		this.handlers = new ArrayList<MessageHandler>();
 	}
 	

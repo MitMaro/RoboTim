@@ -42,14 +42,12 @@ public class Message {
 		// split the command and other params
 		tmp = message.substring(prefix_end + 1, trailing_start).split("\\s");
 		
-		// error checking for empty string
-		if (tmp.length > 0) {
-			// add command
-			this.command = tmp[0].toLowerCase();
-		} else {
-			throw new InvalidMessage(message);
+		// too many parameters
+		if (tmp.length > 16) {
+			throw new InvalidMessage("To many parameters: " + message);
 		}
 		
+		this.command = tmp[0].toLowerCase();
 		
 		for (int i = 1; i < tmp.length; i++) {
 			this.parameters[i - 1] = tmp[i];
