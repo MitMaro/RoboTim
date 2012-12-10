@@ -22,10 +22,6 @@ public class LineInputReceiver implements ReceiverHandler {
 		this.handlers = new ArrayList<MessageHandler>();
 	}
 	
-	public Logger getLogger() {
-		return this.logger;
-	}
-	
 	public void addHandler(MessageHandler handler) {
 		this.logger.debug("Adding message handler: {}", handler);
 		this.handlers.add(handler);

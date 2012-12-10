@@ -5,6 +5,10 @@ public class Quit extends AbstractCommand {
 	
 	private String message;
 	
+	public Quit() {
+		super("QUIT");
+	}
+	
 	public Quit(String message) {
 		super("QUIT");
 		

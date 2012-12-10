@@ -9,6 +9,10 @@ public class Nick extends AbstractCommand {
 		super("NICK");
 		this.nick = nick;
 	}
+	
+	public String getNick() {
+		return this.nick;
+	}
 
 	@Override
 	public String getMessage() {

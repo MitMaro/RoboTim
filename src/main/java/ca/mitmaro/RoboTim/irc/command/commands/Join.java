@@ -7,12 +7,12 @@ public class Join extends AbstractCommand {
 	private String[] keys;
 
 	public Join(String[] channels, String[] keys) {
-		super("NICK");
+		super("JOIN");
 		this.channels = channels;
 		this.keys = keys;
 	}
 	public Join(String[] channels) {
-		super("NICK");
+		super("JOIN");
 		this.channels = channels;
 		this.keys = new String[] {};
 	}
@@ -37,6 +37,9 @@ public class Join extends AbstractCommand {
 			key += this.keys[this.keys.length - 1];
 		}
 		
+		if (key.isEmpty()) {
+			return String.format("JOIN %s", channel);
+		}
 		return String.format("JOIN %s %s", channel, key);
 	}
 

@@ -8,9 +8,18 @@ tests:
   - name: IRC
     classes:
       - ca.mitmaro.RoboTim.irc.MessageReceiverTest
+      - ca.mitmaro.RoboTim.irc.LineInputReceiverTest
       - ca.mitmaro.RoboTim.irc.mapper.Numeric004MapperTest
       - ca.mitmaro.RoboTim.irc.mapper.PingMapperTest
       - ca.mitmaro.RoboTim.irc.mapper.PongMapperTest
       - ca.mitmaro.RoboTim.irc.message.MessageTest
       - ca.mitmaro.RoboTim.irc.command.CommandMapperTest
-
+      - ca.mitmaro.RoboTim.irc.command.commands.JoinTest
+      - ca.mitmaro.RoboTim.irc.command.commands.NickTest
+      - ca.mitmaro.RoboTim.irc.command.commands.Numeric001Test
+      - ca.mitmaro.RoboTim.irc.command.commands.Numeric004Test
+      - ca.mitmaro.RoboTim.irc.command.commands.PingTest
+      - ca.mitmaro.RoboTim.irc.command.commands.PongTest
+      - ca.mitmaro.RoboTim.irc.command.commands.PrivmsgTest
+      - ca.mitmaro.RoboTim.irc.command.commands.QuitTest
+      - ca.mitmaro.RoboTim.irc.command.commands.UserTest

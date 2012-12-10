@@ -11,6 +11,7 @@ public class User extends AbstractCommand {
 		super("USER");
 		this.user = user;
 		this.mode = mode;
+		this.name = name;
 	}
 
 	@Override
