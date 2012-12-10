@@ -23,3 +23,5 @@ tests:
       - ca.mitmaro.RoboTim.irc.command.commands.PrivmsgTest
       - ca.mitmaro.RoboTim.irc.command.commands.QuitTest
       - ca.mitmaro.RoboTim.irc.command.commands.UserTest
+  - name: Robot
+      - ca.mitmaro.RoboTim.irc.robot.Runner.RobotTest
