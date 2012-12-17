@@ -46,7 +46,7 @@ public class Receiver implements Runnable {
 	}
 	
 	public void addHandler(ReceiverHandler handler) {
-		this.logger.info("Adding reciever handler: {}", handler);
+		this.logger.debug("Adding reciever handler: {}", handler);
 		this.handlers.add(handler);
 	}
 	

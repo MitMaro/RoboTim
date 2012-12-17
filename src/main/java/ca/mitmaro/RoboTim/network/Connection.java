@@ -83,7 +83,7 @@ public class Connection {
 		
 		this.logger.debug("Waiting For Response");
 		String msg = this.in.readLine();
-		this.logger.info("Client Response: {}", msg);
+		this.logger.info("Server Response: {}", msg);
 		return msg;
 	}
 	
@@ -93,6 +93,7 @@ public class Connection {
 	public void sendMessage(String msg) throws IOException {
 		this.logger.info("Sending Message: {}", msg);
 		this.out.write(msg);
+		this.out.flush();
 	}
 	
 	public void shutdown() throws IOException {

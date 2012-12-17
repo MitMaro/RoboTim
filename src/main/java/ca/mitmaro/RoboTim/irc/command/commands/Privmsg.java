@@ -13,6 +13,14 @@ public class Privmsg extends AbstractCommand {
 		this.message = message;
 	}
 
+	public String getMsg() {
+		return this.message;
+	}
+	
+	public String getTarget() {
+		return this.target;
+	}
+
 	@Override
 	public String getMessage() {
 		return String.format("PRIVMSG %s :%s", this.target, this.message);
